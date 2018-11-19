@@ -44,7 +44,7 @@ function count_tasks ($all_tasks, $category) {
     $count = 0;
     foreach ($all_tasks as $key => $value) {
         $item = $value['category'];
-        if ($item == $category) {
+        if ($item === $category) {
             $count++;
         }
     }
@@ -126,7 +126,7 @@ function count_tasks ($all_tasks, $category) {
                     </nav>
 
                     <label class="checkbox">
-                        <?php if ($show_complete_tasks == 1): ?>
+                        <?php if ($show_complete_tasks === 1): ?>
                         <tr class="tasks__item task task--completed">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
@@ -141,16 +141,14 @@ function count_tasks ($all_tasks, $category) {
                         </tr>
                         <?php endif; ?>
                         <!--добавить сюда аттрибут "checked", если переменная $show_complete_tasks равна единице-->
-                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?php if ($show_complete_tasks == 1): ?>checked<?php endif; ?>>
+                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?php if ($show_complete_tasks === 1): ?>checked<?php endif; ?>>
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
 
                 <table class="tasks">
                 <?php foreach($tasks as $key => $val): ?>
-                    <?php if ($val['is_complete'] && $show_complete_tasks == 0):  ?>
-                        <tr></tr>
-                    <?php else: ?>
+                    <?php if ($show_complete_tasks === 1 || $val['is_complete'] === false):  ?>
                         <tr class="tasks__item task <?php if ($val['is_complete']): ?>task--completed<?php endif; ?>">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
